@@ -1,4 +1,4 @@
-document.ready(function(){
+$(document).ready(function(){
 	//questions array set up as follows:
 	//[[question text], [correct answer, incorrect answer 1, incorrect answer 2, incorrect answer 3]]
 	var oQuestions=
