@@ -6,7 +6,7 @@
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="assets/css/style.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 	</head>
 	<body>
@@ -16,7 +16,7 @@
 				<h1 class="display-4">80's Alternative Trivia</h1>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container rounded" id="main-body">
 			<p class="start-true lead">Let's get to it! We have 10 questions about musical groups who were big in the 80s. If you, like me, weren't around for them, I hope you've adopted enough nostalgia to succeed!</p>
 			<p class="start-true">As you might imagine, just click the button that corresponds to the letter of the answer you want.</p>
 			<button class="start-true btn btn-lg btn-primary" id="start-button" onclick="start()">START</button>
@@ -34,7 +34,7 @@
 				<button answer="3" class="answerbutton btn btn-lg">D</button>
 			</div>
 			<h3 class="start-false" id="timer-text">Time remaining: <a id="timer"></a> seconds</h3>
-			<h3 id="status-text" class="start-false"></h3>
+			<h3 id="status-text" class="start-false alert"></h3>
 			<div id="question-list" class="lead"></div>
 		</div>
 		<div>
@@ -44,6 +44,6 @@
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="assets/javascript/app.js"></script>
 	</body>
 </html>

@@ -1,0 +1,25 @@
+.answers{
+	list-style-type: upper-alpha;
+}
+.start-false{
+	display: none;
+}
+.correct{
+	color:#55cc99;
+	font-weight: bold;
+}
+.incorrect{
+	color:#aa5555;
+	font-weight: bold;
+}
+#main-body{
+	background-color: rgba(100,100,200,.6);
+	padding: 2em 1em;
+	color: white;
+}
+body{
+	background: url("../images/round.png") #dddddd;
+}
+.jumbotron{
+	background-color: #cceeee;
+}

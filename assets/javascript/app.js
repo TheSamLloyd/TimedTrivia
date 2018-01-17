@@ -68,15 +68,15 @@ function results(){
 	}
 	$("#question-text").text("Your score was "+total+" out of "+questions.length+".")
 	//show an appropriate message
-	$("#status-text").text(grade(total));
+	$("#status-text").removeClass("alert-success alert-danger").addClass("alert-primary").text(grade(total));
 	//show them which questions they got right and which they got wrong
 	var qList = $("<ol>");
 	for (var i=0;i<questions.length;i++){
 		if (score[i]){
-			qList.append($("<li>").html("<i class=\"far fa-check-circle correct\"></i>"))
+			qList.append($("<li>").html("<i class=\"far fa-check-circle display-5 correct\"></i>"))
 		}
 		else{
-			qList.append($("<li>").html("<i class=\"far fa-times-circle incorrect\"></i>"))
+			qList.append($("<li>").html("<i class=\"far fa-times-circle display-5 incorrect\"></i>"))
 		}
 	}
 	$("#question-list").append(qList);
@@ -88,7 +88,7 @@ function dispQuestion(qIndex){
 	//function that handles most of the displaying questions
 	if(qIndex<questions.length){
 		$("li").removeClass("correct incorrect");
-		$("#status-text").text("");
+		$("#status-text").text("").removeClass("alert-success alert-danger");
 		var docQuestion=$("#question-text");
 		var docAnswers=$(".answer");
 		var question=questions[qIndex][0];
@@ -109,7 +109,7 @@ $(".answerbutton").click(function(){
 	var selection=$(this).attr("answer");
 	if (correct==selection){
 		//a good thing happens
-		$("#status-text").text("Correct!")
+		$("#status-text").text("Correct!").addClass("alert-success")
 		$("ol li:eq("+correct+")").addClass("correct");
 		score.push(1);
 		nextQ();
@@ -141,7 +141,7 @@ function wrong(selection){
 	$("ol li:eq("+correct+")").addClass("correct");
 	$("ol li:eq("+selection+")").addClass("incorrect");
 	//tells you which one was right
-	$("#status-text").text("Sorry! \n The answer was "+$("[answer="+correct+"]").text()+".");
+	$("#status-text").addClass("alert-danger").text("Sorry! \n The answer was "+$("[answer="+correct+"]").text()+".");
 	score.push(0);
 }
 //this function needed to be split out because i needed to be able 
