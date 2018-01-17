@@ -1,6 +1,14 @@
-ol{
+.answers{
 	list-style-type: upper-alpha;
 }
 .start-false{
 	display: none;
+}
+.correct{
+	color:#00aa00;
+	font-weight: bold;
+}
+.incorrect{
+	color:#aa0000;
+	font-weight: bold;
 }

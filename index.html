@@ -7,30 +7,35 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 		<link rel="stylesheet" href="style.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 	</head>
 	<body>
-		<div>
+		<div class="jumbotron">
 			<!--header-->
+			<div class="container">
+				<h1 class="display-4">80's Alternative Trivia</h1>
+			</div>
 		</div>
 		<div class="container">
-			<h1 class="start-true">HEY EVERYONE</h1>
-			<p class="start-true">THERE ARE RULES</p>
-			<button class="start-true" onclick="start()">START</button>
-			<h3 id="question-text" class="start-false"></h3>
-			<ol class="start-false">
+			<p class="start-true lead">Let's get to it! We have 10 questions about musical groups who were big in the 80s. If you, like me, weren't around for them, I hope you've adopted enough nostalgia to succeed!</p>
+			<p class="start-true">As you might imagine, just click the button that corresponds to the letter of the answer you want.</p>
+			<button class="start-true btn btn-lg btn-primary" id="start-button" onclick="start()">START</button>
+			<h3 id="question-text" class="start-false display-5"></h3>
+			<ol class="start-false answers lead">
 				<li class="answer"></li>
 				<li class="answer"></li>
 				<li class="answer"></li>
 				<li class="answer"></li>
 			</ol>
-			<div class="start-false">
-				<button answer="0" class="answerbutton">A</button>
-				<button answer="1" class="answerbutton">B</button>
-				<button answer="2" class="answerbutton">C</button>
-				<button answer="3" class="answerbutton">D</button>
+			<div class="start-false buttons">
+				<button answer="0" class="answerbutton btn btn-lg">A</button>
+				<button answer="1" class="answerbutton btn btn-lg">B</button>
+				<button answer="2" class="answerbutton btn btn-lg">C</button>
+				<button answer="3" class="answerbutton btn btn-lg">D</button>
 			</div>
-			<h3 id="timer" class="start-false"></h3>
+			<h3 class="start-false" id="timer-text">Time remaining: <a id="timer"></a> seconds</h3>
 			<h3 id="status-text" class="start-false"></h3>
+			<div id="question-list" class="lead"></div>
 		</div>
 		<div>
 			<!--footer-->

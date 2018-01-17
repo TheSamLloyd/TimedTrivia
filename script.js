@@ -1,3 +1,5 @@
+//questions array set up as follows:
+//[[question text], [correct answer, incorrect answer 1, incorrect answer 2, incorrect answer 3]]
 var questions=
 	[
 	["What band was formed by the surviving members of Joy Division after the death of lead singer Ian Curtis?",
@@ -57,11 +59,35 @@ function start(){
 	dispQuestion(qIndex);
 }
 function results(){
-	console.log("you did bad!")
+	//remove "quiz" elements
+ 	$(".buttons, ol, #timer-text").hide();
+ 	//get total score
+	var total=0;
+	for (var i=0;i<questions.length;i++){
+		total+=score[i];
+	}
+	$("#question-text").text("Your score was "+total+" out of "+questions.length+".")
+	//show an appropriate message
+	$("#status-text").text(grade(total));
+	//show them which questions they got right and which they got wrong
+	var qList = $("<ol>");
+	for (var i=0;i<questions.length;i++){
+		if (score[i]){
+			qList.append($("<li>").html("<i class=\"far fa-check-circle correct\"></i>"))
+		}
+		else{
+			qList.append($("<li>").html("<i class=\"far fa-times-circle incorrect\"></i>"))
+		}
+	}
+	$("#question-list").append(qList);
+	score=[];
+	qIndex=0;
+	$("#start-button").text("PLAY AGAIN").show();
 }
 function dispQuestion(qIndex){
+	//function that handles most of the displaying questions
 	if(qIndex<questions.length){
-	console.log(score)
+		$("li").removeClass("correct incorrect");
 		$("#status-text").text("");
 		var docQuestion=$("#question-text");
 		var docAnswers=$(".answer");
@@ -75,24 +101,27 @@ function dispQuestion(qIndex){
 		}
 		timer();
 	}
+	//detects if you've answered all questions
 	else results();
 }
-function clear(){}
 $(".answerbutton").click(function(){
+	//click listener for answer selection
 	var selection=$(this).attr("answer");
 	if (correct==selection){
 		//a good thing happens
 		$("#status-text").text("Correct!")
+		$("ol li:eq("+correct+")").addClass("correct");
 		score.push(1);
 		nextQ();
 	}
 	else{
 		//a bad thing happens
-		wrong();
+		wrong(selection);
 		nextQ();
 	}
 })
 function timer(){
+	//basic countdown functionality. sometimes gets finicky if you click thru too fast.
 	var time=10;
 	$("#timer").text(time);
 	countdown=setInterval(function(){
@@ -101,18 +130,54 @@ function timer(){
 		}
 		else{
 			$("#timer").text(--time)
-			wrong();
+			clearInterval(countdown)
+			wrong(4);
 			nextQ();
 		}
 	},1000);
 }
-function wrong(){
+function wrong(selection){
+	//highlights correct answer vs. your selection
+	$("ol li:eq("+correct+")").addClass("correct");
+	$("ol li:eq("+selection+")").addClass("incorrect");
+	//tells you which one was right
 	$("#status-text").text("Sorry! \n The answer was "+$("[answer="+correct+"]").text()+".");
 	score.push(0);
 }
+//this function needed to be split out because i needed to be able 
+//to call it from both the timeout and the answer selection functions
 function nextQ(){
 	clearInterval(countdown);
 	var k = setTimeout(function(){
 		dispQuestion(++qIndex);
 	}, 1500);
+}
+function grade(tScore){
+	//determine the score as a percentage and decide on an appropriate message.
+	var max=questions.length;
+	var response;
+	var perc=Math.floor(100*tScore/max)
+	console.log(max);
+	console.log(tScore);
+	console.log(perc);
+	if (perc==100){
+		response = "Wow! You really know your stuff! Didn't I see you on MTV?"
+	}
+	else if (perc>=80){
+		response = "Nice job! Get out the synthesizer and play yourself a victory tune!"
+	}
+	else if (perc>=50){
+		response = "Alright! You're pretty clever, and with a little practice you may be a champion!"
+	}
+	else if (perc >=30){
+		response = "Nice try! I bet you can try again and do even better."
+	}
+	else if (perc>0){
+		response = "Statistically, you would have done better by guessing."
+	}
+	else {
+		response = "You literally managed to get them all wrong. How did you do that?"
+	}
+	return response;
+
 }
