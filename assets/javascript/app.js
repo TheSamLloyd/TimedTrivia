@@ -1,6 +1,6 @@
 //questions array set up as follows:
 //[[question text], [correct answer, incorrect answer 1, incorrect answer 2, incorrect answer 3]]
-var questions=
+var oQuestions=
 	[
 	["What band was formed by the surviving members of Joy Division after the death of lead singer Ian Curtis?",
 		["New Order","Psychedelic Furs","A Flock of Seagulls","The Smiths"]],
@@ -48,6 +48,7 @@ function permute(permutation) {
   var index=Math.floor(Math.random()*result.length)
   return result[index];
 }
+var questions=permute(oQuestions);
 var score=[]
 var correct;
 var qIndex=0;
@@ -156,10 +157,7 @@ function grade(tScore){
 	//determine the score as a percentage and decide on an appropriate message.
 	var max=questions.length;
 	var response;
-	var perc=Math.floor(100*tScore/max)
-	console.log(max);
-	console.log(tScore);
-	console.log(perc);
+	var perc=Math.floor(100*tScore/max);
 	if (perc==100){
 		response = "Wow! You really know your stuff! Didn't I see you on MTV?"
 	}
