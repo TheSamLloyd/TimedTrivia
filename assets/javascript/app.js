@@ -1,4 +1,4 @@
-$(document).ready(){
+document.ready(function(){
 	//questions array set up as follows:
 	//[[question text], [correct answer, incorrect answer 1, incorrect answer 2, incorrect answer 3]]
 	var oQuestions=
@@ -178,6 +178,5 @@ $(document).ready(){
 			response = "You literally managed to get them all wrong. How did you do that?"
 		}
 		return response;
-
 	}
-}
+});
